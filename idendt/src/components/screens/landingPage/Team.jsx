@@ -6,56 +6,65 @@ import Gallery3 from '../../../assets/images/heroSectionImages/gallery3.jpeg';
 import Gallery4 from '../../../assets/images/heroSectionImages/gallery4.jpeg';
 import Gallery5 from '../../../assets/images/heroSectionImages/gallery5.jpeg';
 import Gallery6 from '../../../assets/images/heroSectionImages/gallery6.jpeg';
-import Group from '../../../assets/images/heroSectionImages/group.jpeg';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faLink } from "@fortawesome/free-solid-svg-icons";
 
 function Team() {
+    const teamData = [
+        {
+            "id" : 1,
+            "image" : Gallery1,
+            "title" : "Name 1",
+            "linkedin" : "https://linkedin.com"
+        },
+        {
+            "id" : 2,
+            "image" : Gallery2,
+            "title" : "Name 2",
+            "linkedin" : "https://linkedin.com"
+        },
+        {
+            "id" : 3,
+            "image" : Gallery3,
+            "title" : "Name 3",
+            "linkedin" : "https://linkedin.com"
+        },
+        {
+            "id" : 4,
+            "image" : Gallery4,
+            "title" : "Name 4",
+            "linkedin" : "https://linkedin.com"
+        },
+        {
+            "id" : 5,
+            "image" : Gallery5,
+            "title" : "Name 5",
+            "linkedin" : "https://linkedin.com"
+        },
+        {
+            "id" : 6,
+            "image" : Gallery6,
+            "title" : "Name 6",
+            "linkedin" : "https://linkedin.com"
+        },
+    ];
     return (
         <MainContainer>
             <WrapperContainer>
                 <Title>OUR TEAM</Title>
                 <ImageGallery>
-                    <ImageContainer>
-                        <img src={Gallery1} alt="Image" />
-                        <BottomContent>
-                            <ContentHeading>Name 1</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </BottomContent>
-                    </ImageContainer>
-                    <ImageContainer>
-                        <img src={Gallery2} alt="Image" />
-                        <BottomContent>
-                            <ContentHeading>Name 2</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </BottomContent>
-                    </ImageContainer>
-                    <ImageContainer>
-                        <img src={Gallery3} alt="Image" />
-                        <BottomContent>
-                            <ContentHeading>Name 3</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </BottomContent>
-                    </ImageContainer>
-                    <ImageContainer>
-                        <img src={Gallery4} alt="Image" />
-                        <BottomContent>
-                            <ContentHeading>Name 4</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </BottomContent>
-                    </ImageContainer>
-                    <ImageContainer>
-                        <img src={Gallery5} alt="Image" />
-                        <BottomContent>
-                            <ContentHeading>Name 5</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </BottomContent>
-                    </ImageContainer>
-                    <ImageContainer>
-                        <img src={Gallery6} alt="Image" />
-                        <BottomContent>
-                            <ContentHeading>Name 6</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </BottomContent>
-                    </ImageContainer>
+                    {teamData.map((item) => (
+                        <ImageContainer>
+                            <img src={item.image} alt="Image" />
+                            <BottomContent>
+                                <ContentHeading>{item.title}</ContentHeading>
+                                <ContentDescription href={item.linkedin} target="_blank" >
+                                    <FontAwesomeIcon icon={faLink}/>   
+                                </ContentDescription>
+                            </BottomContent>
+                        </ImageContainer>
+                    ))}
                 </ImageGallery>
             </WrapperContainer>
         </MainContainer>
@@ -89,25 +98,20 @@ const ImageContainer = styled.div `
         display: block;
     }
 `;
-const TagLine = styled.small`
-    font-size: 28px;
-    font-style: italic;
-    display: block;
-    text-align: center;
-    margin-bottom: 25px;
-`;
 const BottomContent = styled.div `
     padding: 10px;
     width: 100%;
-    text-align: center;
     position: absolute;
     bottom: 0;
+    display: flex;
+
 `;
 const ContentHeading = styled.h5`
     font-size: 22px;
     font-weight: 600;
+    margin-right: 10px;
 `;
-const ContentDescription = styled.p`
+const ContentDescription = styled.a`
     font-size: 20px;
 `;
 const DescriptionBox = styled.p`

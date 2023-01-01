@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Gallery1 from '../../../assets/images/heroSectionImages/gallery1.jpeg';
 import Gallery2 from '../../../assets/images/heroSectionImages/gallery2.jpeg';
@@ -9,55 +9,63 @@ import Gallery6 from '../../../assets/images/heroSectionImages/gallery6.jpeg';
 import Group from '../../../assets/images/heroSectionImages/group.jpeg';
 
 function Services() {
+    const [ toggle, setToggle ] = useState();
+    const serviceData = [
+        {
+            "id" : 1,
+            "image" : Gallery1,
+            "title" : "Digital Strategy",
+            "subtitle" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        },
+        {
+            "id" : 2,
+            "image" : Gallery2,
+            "title" : "Branding",
+            "subtitle" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        },
+        {
+            "id" : 3,
+            "image" : Gallery3,
+            "title" : "User Experience/User Interface",
+            "subtitle" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        },
+        {
+            "id" : 4,
+            "image" : Gallery4,
+            "title" : "Development",
+            "subtitle" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        },
+        {
+            "id" : 5,
+            "image" : Gallery5,
+            "title" : "Web Design",
+            "subtitle" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        },
+        {
+            "id" : 6,
+            "image" : Gallery6,
+            "title" : "SEO",
+            "subtitle" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+        },
+    ];
     return (
         <MainContainer>
             <WrapperContainer>
                 <Title>OUR SERVICES</Title>
                 <ImageGallery>
-                    <ImageContainer>
-                        <img src={Gallery1} alt="Image" />
-                        <BottomContent>
-                            <ContentHeading>Digital Strategy</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </BottomContent>
-                    </ImageContainer>
-                    <ImageContainer>
-                        <img src={Gallery2} alt="Image" />
-                        <BottomContent>
-                            <ContentHeading>Branding</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </BottomContent>
-                    </ImageContainer>
-                    <ImageContainer>
-                        <img src={Gallery3} alt="Image" />
-                        <BottomContent>
-                            <ContentHeading>User Experience/User Interface</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </BottomContent>
-                    </ImageContainer>
-                    <ImageContainer>
-                        <img src={Gallery4} alt="Image" />
-                        <BottomContent>
-                            <ContentHeading>Development</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </BottomContent>
-                    </ImageContainer>
-                    <ImageContainer>
-                        <img src={Gallery5} alt="Image" />
-                        <BottomContent>
-                            <ContentHeading>Web Design</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </BottomContent>
-                    </ImageContainer>
-                    <ImageContainer>
-                        <img src={Gallery6} alt="Image" />
-                        <BottomContent>
-                            <ContentHeading>SEO</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </BottomContent>
-                    </ImageContainer>
+                    {serviceData.map((item) => (
+                        <ImageContainer key={item.id} onMouseEnter={() => setToggle(item.id)} onMouseLeave={() => setToggle()}>
+                            <img src={item.image} alt="Image" />
+                            <BottomContent className={toggle === item.id ? "hoverContent" : ""}>
+                                <ContentHeading>{item.title}</ContentHeading>
+                                <ContentDescription>
+                                    {item.subtitle}
+                                </ContentDescription>
+                            </BottomContent>
+                        </ImageContainer>
+                    ))}
                 </ImageGallery>
-                <TagLine>"QUALITY OVER QUANTITY <br />AND RESULTS OVER EXCUSES"</TagLine>
+                <TagLine>"<TagContent>QUALITY OVER QUANTITY <br />AND RESULTS OVER EXCUSES</TagContent>"</TagLine>
                 <ImageContainer>
                     <img src={Group} alt="Image" />
                 </ImageContainer>
@@ -85,9 +93,11 @@ const ImageGallery = styled.div `
     grid-template-columns: auto auto auto;
     padding: 10px;
     margin-bottom: 30px;
+    cursor: pointer;
 `;
 const ImageContainer = styled.div `
     position: relative;
+    overflow: hidden;
     img {
         width: 100%;
         display: block;
@@ -99,21 +109,28 @@ const TagLine = styled.small`
     display: block;
     text-align: center;
     margin-bottom: 25px;
+    font-family: Georgia;
+`;
+const TagContent = styled.p`
+    font-family: "Inter";
+    display: inline;
 `;
 const BottomContent = styled.div `
     padding: 10px;
     width: 100%;
-    text-align: center;
     position: absolute;
-    bottom: 0;
+    top: 85%;
+    transition: all 0.3s ease-in-out;
+    &.hoverContent {
+        top: 0;
+        transition: all 0.3s ease-in-out;
+    }
 `;
 const ContentHeading = styled.h5`
     font-size: 22px;
     font-weight: 600;
+    margin-bottom: 20px;
 `;
 const ContentDescription = styled.p`
-    font-size: 20px;
-`;
-const DescriptionBox = styled.p`
-    font-size: 20px;
+    font-size: 16px;
 `;

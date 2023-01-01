@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from "../../assets/images/logo-white.png";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 function Header() {
+    const [ toggle, setToggle ] = useState(false);
+
     return (
         <MainContainer>
             <WrapperContainer>
@@ -14,10 +17,18 @@ function Header() {
                     </LogoContainer>
                 </LeftBox>
                 <RightBox>
-                    <span>About</span>
-                    <span>Services</span>
-                    <span>Our Team</span>
-                    <span>Contact</span>
+                    <MenuBar onClick={() => setToggle(true)}>
+                        <FontAwesomeIcon icon={faBars} />
+                    </MenuBar>
+                    <MenuContent className={toggle ? "offset" : ""}>
+                        <CloseContainer>
+                            <FontAwesomeIcon icon={faXmark} onClick={() => setToggle(false)}/>
+                        </CloseContainer>
+                        <span>About</span>
+                        <span>Services</span>
+                        <span>Our Team</span>
+                        <span>Contact</span>
+                    </MenuContent>
                 </RightBox>
             </WrapperContainer>
         </MainContainer>
@@ -33,7 +44,7 @@ const WrapperContainer = styled.div `
     justify-content: space-between;
     align-items: center;
     padding: 50px 0;
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
 `;
 const LeftBox = styled.div `
@@ -53,5 +64,43 @@ const RightBox = styled.div `
 
     span{
         margin-left: 15px;
+    }
+`;
+const MenuContent = styled.div `
+    background-color: #293239;
+    padding: 65px 30px;
+    position: fixed;
+    top: 0;
+    right: -400px;
+    height: 100vh;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    transition: all 0.5s ease;
+
+    &.offset {
+        right: 0;
+        transition: all 0.5s ease;
+    }
+
+    span {
+        margin: 10px 0 30px;
+        font-size: 30px;
+    }
+
+    svg {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+`;
+const CloseContainer = styled.div`
+    /* width: 100%;
+    text-align: center; */
+`;
+const MenuBar = styled.div `
+    svg{
+        font-size: 30px;
     }
 `;

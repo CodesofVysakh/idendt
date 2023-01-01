@@ -22,31 +22,38 @@ function HeroSection() {
 
 export default HeroSection;
 
-const MainContainer = styled.div `
+const MainContainer = styled.div`
     height: calc(100vh - 150px);
     display: flex;
     justify-content: center;
     align-items: center;
 `;
-const WrapperContainer = styled.div `
+const WrapperContainer = styled.div`
     width: 80%;
     margin: 0 auto;
     text-align: center;
 `;
-const Title = styled.h3 `
+const Title = styled.h3`
     font-size: 38px;
     margin-bottom: 15px;
     `;
-const SubTitle = styled.h5 `
+const SubTitle = styled.h5`
     font-size: 22px;
     font-weight: 900;
     margin-bottom: 25px;
 `;
-const IdentifyButton = styled.div `
+const IdentifyButton = styled.div`
     border-right: 2.5px solid #fff;
     border-bottom: 2.5px solid #fff;
     width: fit-content;
-    padding: 8px;
+    padding: 8px 12px;
     font-size: 25px;
     margin: 0 auto;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+        background-color: #fff;
+        color: #000;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+    }
 `;
