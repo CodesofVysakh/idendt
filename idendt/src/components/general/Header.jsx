@@ -79,6 +79,7 @@ const MenuContent = styled.div `
     justify-content: flex-start;
     align-items: flex-end;
     transition: all 0.5s ease;
+    z-index: 10;
 
     &.offset {
         right: 0;
@@ -87,7 +88,7 @@ const MenuContent = styled.div `
 
     span {
         margin: 10px 0 30px;
-        font-size: 30px;
+        font-size: 25px;
     }
 
     svg {
@@ -96,10 +97,12 @@ const MenuContent = styled.div `
     }
 `;
 const CloseContainer = styled.div`
+    cursor: pointer;
     /* width: 100%;
     text-align: center; */
 `;
 const MenuBar = styled.div `
+    cursor: pointer;
     svg{
         font-size: 30px;
     }

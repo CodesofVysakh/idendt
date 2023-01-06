@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Dm2 from '../../../assets/images/heroSectionImages/dummy2.jpeg';
+import Dm2 from '../../../assets/images/landingPage/WhatDrivesUs.png';
 
 function DrivesUs() {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import OurCompanyImage from '../../../assets/images/heroSectionImages/dummy1.jpeg';
+import OurCompanyImage from '../../../assets/images/landingPage/OurIdendtOne.png';
 
 function OurCompany() {
     return (

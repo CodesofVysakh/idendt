@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Blog from '../../../assets/images/blog/blog.png';
 
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
+
 function BlogFaq() {
+    const faqData = [
+        {
+            id : 1,
+            title : "DO I REALLY NEED A WEBSITE?",
+            description : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae architecto illo odit recusandae corporis, veritatis quas delectus amet libero reiciendis fugiat commodi nulla vitae. Asperiores repudiandae debitis ipsa molestias sequi?"
+        },
+        {
+            id : 2,
+            title : "WHAT IS SEARCH ENGINE OPTIMIZATION?",
+            description : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae architecto illo odit recusandae corporis, veritatis quas delectus amet libero reiciendis fugiat commodi nulla vitae. Asperiores repudiandae debitis ipsa molestias sequi?"
+        },
+        {
+            id : 3,
+            title : "WHAT MAKES FOR A GOOD WEB DESIGN?",
+            description : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae architecto illo odit recusandae corporis, veritatis quas delectus amet libero reiciendis fugiat commodi nulla vitae. Asperiores repudiandae debitis ipsa molestias sequi?"
+        },
+    ]
+
+    const [ itemId, setItemId ] = useState();
+    const [ itemExpand, setItemExpand ] = useState();
     return (
         <MainContainer>
             <WrapperContainer>
@@ -24,18 +48,33 @@ function BlogFaq() {
                     <Title>FAQ</Title>
                     <SubTitle>CLARIFYING YOUR CONCERNS AND DOUBTS.</SubTitle>
                     <FaqListContainer>
-                        <Faq>
-                            <ContentHeading>DO I REALLY NEED A WEBSITE?</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </Faq>
-                        <Faq>
-                            <ContentHeading>WHAT IS SEARCH ENGINE OPTIMIZATION?</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </Faq>
-                        <Faq>
-                            <ContentHeading>WHAT MAKES FOR A GOOD WEB DESIGN?</ContentHeading>
-                            <ContentDescription></ContentDescription>
-                        </Faq>
+                        {faqData.map((item) => (
+                            <Faq>
+                                <ContentHeadContainer>
+                                    <ContentHeading>{item.title}</ContentHeading>
+                                    {itemId === item.id && itemExpand ? 
+                                        <FontAwesomeIcon 
+                                            icon={faCaretUp} 
+                                            onClick={() => {
+                                                setItemId();
+                                                setItemExpand(false);
+                                        }} />
+                                        :
+                                        <FontAwesomeIcon 
+                                            icon={faCaretDown} 
+                                            onClick={() => {
+                                                setItemId(item.id);
+                                                setItemExpand(true);
+                                        }} />
+                                    }
+                                </ContentHeadContainer>
+                                {itemId === item.id && itemExpand ? 
+                                    <ContentDescription>{item.description}</ContentDescription>
+                                    :
+                                    null
+                                }
+                            </Faq>
+                        ))}
                     </FaqListContainer>
                 </FaqContainer>
             </WrapperContainer>
@@ -59,7 +98,7 @@ const Title = styled.h3 `
     margin-bottom: 20px;
 `;
 const SubTitle = styled.h5 `
-    font-size: 32px;
+    font-size: 20px;
     margin-bottom: 20px;
 `;
 const ImageGallery = styled.div `
@@ -85,18 +124,32 @@ const FaqContainer = styled.div `
     
 `;
 const Faq = styled.div `
-    padding: 0 20px;
+    /* padding: 0 20px;
     margin-bottom: 20px;
     border-right: 2.5px solid #fff;
-    border-bottom: 2.5px solid #fff;
+    border-bottom: 2.5px solid #fff; */
+    padding: 18px;
+    margin-bottom: 30px;
+    background: #191C21;
+    box-shadow: 0px 28.6524px 63.0354px rgb(126 126 126 / 15%);
+    border-radius: 11.461px;
+`;
+const ContentHeadContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    svg {
+        cursor: pointer;
+    }
 `;
 const ContentHeading = styled.h5`
     font-size: 22px;
     font-weight: 600;
 `;
 const ContentDescription = styled.p`
-    font-size: 20px;
-`;
-const DescriptionBox = styled.p`
-    font-size: 20px;
+    font-size: 18px;
+    transition: all 1s ease;
+    margin-top: 10px;
+
 `;
