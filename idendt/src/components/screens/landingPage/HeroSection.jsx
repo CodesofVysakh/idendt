@@ -79,17 +79,17 @@ const SubTitle = styled.h5`
 `;
 const IdentifyButton = styled.div`
     cursor: pointer;
-    border-right: 2.5px solid #fff;
-    border-bottom: 2.5px solid #fff;
+    border: 1.5px solid #fff;
+    border-radius: 10px;
     width: fit-content;
-    padding: 8px 12px;
+    padding: 10px 20px;
     font-size: 25px;
     margin: 0 auto;
     transition: all 0.3s ease-in-out;
     :hover{
         background-color: #fff;
         color: #000;
-        border-radius: 5px;
+        border-radius: 10px;
         transition: all 0.3s ease-in-out;
     }
 `;
